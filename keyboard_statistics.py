@@ -20,25 +20,25 @@ statistics = open("statistics.txt", "r+")
 done = False
 clock = pygame.time.Clock()
 
-with open('statistics.txt,', 'r') as file:
+with open('statistics.txt', 'r') as file:
     data = file.readlines()
-
+print(data)
 while not done:
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
             done = True
-        if event.type == pygame.KEYDOWN:
-            letter = event.__dict__['unicode']
-
-    data[ord(letter) - 64] += 1
-
-
+        if event.type == pygame.KEYDOWN:  # to find which key is being presse
+            letter = event.__dict__['unicode'] # save pressed key to variable
+            line_in_file = ord(letter) - 97  # letter into number, a = 1, b = 2 etc
+            line_before_added = data[int(line_in_file)]  # grab information in corresponding line.
+            line_before_added += 1  # somehow increment number in line
+            # save line to variable with list of key presses (letter)
+            print(line_before_added)
 
 
     screen.fill(WHITE)
-    pygame.draw.rect(screen, CYAN, [0, 0, 250, 1200])
-    pygame.draw.rect(screen, BLACK, [250, 0, 5, 1200])
+
 
 
     pygame.display.flip()
